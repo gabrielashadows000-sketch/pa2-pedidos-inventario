@@ -8,6 +8,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+
 
 /**
  * Entidad que representa un pedido realizado por un cliente.
@@ -40,6 +43,10 @@ public class Pedido {
 
   @Column(nullable = false)
   private LocalDateTime fecha;
+
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false, length = 20)
+  private PedidoEstado estado = PedidoEstado.REGISTRADO;
 
   public Pedido() {
   }
@@ -129,5 +136,13 @@ public class Pedido {
 
   public void setFecha(LocalDateTime fecha) {
     this.fecha = fecha;
+  }
+
+  public PedidoEstado getEstado() {
+      return estado;
+  }
+
+  public void setEstado(PedidoEstado estado) {
+      this.estado = estado;
   }
 }
