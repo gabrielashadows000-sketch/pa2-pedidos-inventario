@@ -38,3 +38,30 @@ Accept: application/json
 {
   "cantidad": 9999
 }
+
+### Devolver stock por código (200)
+POST {{baseUrl}}/inventario/productos/codigo/LAP-001/devoluciones
+Content-Type: application/json
+Accept: application/json
+
+{
+  "cantidad": 2
+}
+
+### Cantidad inválida (400)
+POST {{baseUrl}}/inventario/productos/codigo/LAP-001/devoluciones
+Content-Type: application/json
+Accept: application/json
+
+{
+  "cantidad": 0
+}
+
+### Código inexistente (404)
+POST {{baseUrl}}/inventario/productos/codigo/NO-EXISTE/devoluciones
+Content-Type: application/json
+Accept: application/json
+
+{
+  "cantidad": 2
+}

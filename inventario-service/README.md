@@ -65,6 +65,7 @@ API principal:
 GET  /inventario-service/api/inventario/productos
 GET  /inventario-service/api/inventario/productos/1/stock
 POST /inventario-service/api/inventario/productos/1/reservas
+POST /inventario-service/api/inventario/productos/codigo/{codigo}/devoluciones
 ```
 
 Body de reserva:
@@ -76,6 +77,16 @@ Body de reserva:
 ```
 
 También existen endpoints por `codigo` (`LAP-001`, `MON-001`, `TEC-001`) para mostrar un contrato menos acoplado a las claves internas de base de datos.
+
+Body de devolución:
+
+```json
+{
+  "cantidad": 2
+}
+```
+
+La devolución suma la cantidad indicada al stock del producto. Responde 404 si el código no existe y 400 si la cantidad es cero o negativa.
 
 ## Material de clase
 
