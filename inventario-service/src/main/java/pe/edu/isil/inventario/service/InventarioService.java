@@ -86,6 +86,18 @@ public class InventarioService {
     return reservar(obtenerProductoPorCodigo(codigo), cantidad);
   }
 
+  @TransactionAttribute(TransactionAttributeType.REQUIRED)
+  public ProductoInventario devolverStockPorCodigo(String codigo, int cantidad) {
+    ProductoInventario producto = obtenerProductoPorCodigo(codigo);
+
+    if (cantidad <= 0) {
+      throw datosInvalidos("La cantidad debe ser mayor que cero.");
+    }
+
+    producto.devolverStock(cantidad);
+    return producto;
+  }
+
   private ProductoInventario reservar(ProductoInventario producto, int cantidad) {
     if (cantidad <= 0) {
       throw datosInvalidos("La cantidad debe ser mayor que cero.");
